@@ -10,8 +10,8 @@ var books = [
   { name: "The Long Earth", genre: "Sci-Fi", id: "3" },
 ];
 
-const BookType = new GraphQLObjectType({
-  name: "Book",
+const UserType = new GraphQLObjectType({
+  name: "user",
   fields: () => ({
     id: { type: GraphQLString },
     name: { type: GraphQLString },
@@ -20,14 +20,13 @@ const BookType = new GraphQLObjectType({
 });
 
 const RootQuery = new GraphQLObjectType({
-  name: "RootQueryType",
+  name: "xyz",
   fields: {
-    book: {
-      type: BookType,
-      args: { id: { type: GraphQLString } },
+    codeimprove: {
+      type: new graphql.GraphQLList(UserType),
+      // args: { id: { type: GraphQLString } },
       resolve(parent, args) {
-        // code to get data from db / other source
-        return _.find(books, { id: args.id });
+        return books;
       },
     },
   },
